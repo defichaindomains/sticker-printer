@@ -77,7 +77,7 @@ const DateValue = styled(Typography)(
   `
 );
 
-let baseAvatarURL = "https://metadata.defichain-domains.com/mumbai/avatar";
+let baseAvatarURL = "https://metadata.defichain-domains.com/mumbai/avatar"; //TO DO: UPDATE PROD URL
 
 const ENSCard = ({ profile }) => {
   const { name, date, hasAvatar } = profile;

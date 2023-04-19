@@ -24,11 +24,17 @@ const GET_DOMAIN_BY_NAME = gql`
 export async function retrieveProfile(ensName) {
   const labels = ensName.split(".");
   let hasAvatar = false;
+
+  //TO DO: UPDATE PROD SUBGRAPH URI
   const [graphPromise] = await Promise.allSettled([
-    request(process.env.GRAPH_URI, GET_DOMAIN_BY_NAME, {
-      name: ensName,
-      label: labels[0],
-    }),
+    request(
+      "https://api.thegraph.com/subgraphs/name/defichaindomains/defichain-domains-registry",
+      GET_DOMAIN_BY_NAME,
+      {
+        name: ensName,
+        label: labels[0],
+      }
+    ),
   ]);
   if (graphPromise.status === "rejected" || !graphPromise.value.domains[0]) {
     alert(graphPromise.reason || "No profile found");
